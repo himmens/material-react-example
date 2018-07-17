@@ -17,6 +17,9 @@ const styles = {
     flex: {
         flexGrow: 1,
     },
+    appBar: {
+        backgroundColor: '#ffff00',
+    },
     menuButton: {
         marginLeft: -12,
         marginRight: 20,
@@ -43,7 +46,7 @@ class AppHeader extends React.Component {
 
         return (
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar className={classes.appBar}>
                     <Toolbar>
                         <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
                             <MenuIcon />
