@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import MenuItem from '@material-ui/core/MenuItem';
 import HomeIcon from '@material-ui/icons/Home';
+import AccountIcon from '@material-ui/icons/AccountBox';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
@@ -13,6 +14,12 @@ const styles = {
   },
   fullList: {
     width: 'auto',
+  },
+  icon: {
+    color: '#5d9aff',
+    '&:hover': {
+      color: '#dd2560',
+    },
   },
 };
 
@@ -30,12 +37,15 @@ const AppDrawer = (props) => {
         >
           <MenuItem onClick={onDrawerClose}>
             <ListItemIcon className={classes.icon}>
-              <HomeIcon/>
+              <HomeIcon className="icon"/>
             </ListItemIcon>
             <ListItemText classes={{primary: classes.primary}} inset primary="Home"/>
           </MenuItem>
           <MenuItem onClick={onDrawerClose}>
-            My account
+            <ListItemIcon className={classes.icon}>
+              <AccountIcon className="icon"/>
+            </ListItemIcon>
+            <ListItemText classes={{primary: classes.primary}} inset primary="My account"/>
           </MenuItem>
         </div>
       </Drawer>
