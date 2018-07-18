@@ -18,7 +18,7 @@ const styles = {
         flexGrow: 1,
     },
     appBar: {
-        backgroundColor: '#ffff00',
+        backgroundColor: '#5d9aff',
     },
     menuButton: {
         marginLeft: -12,
@@ -48,8 +48,8 @@ class AppHeader extends React.Component {
             <div className={classes.root}>
                 <AppBar className={classes.appBar}>
                     <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                            <MenuIcon />
+                        <IconButton className={classes.menuButton} color="inherit" onClick={this.props.onIconClick}>
+                            <MenuIcon/>
                         </IconButton>
                         <Typography variant="title" color="inherit" className={classes.flex}>
                             News
@@ -61,7 +61,7 @@ class AppHeader extends React.Component {
                                 onClick={this.handleMenu}
                                 color="inherit"
                             >
-                                <AccountCircle />
+                                <AccountCircle/>
                             </IconButton>
                             <Menu
                                 id="menu-appbar"
