@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import MenuItem from '@material-ui/core/MenuItem';
+import HomeIcon from '@material-ui/icons/Home';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const styles = {
   list: {
@@ -14,7 +17,7 @@ const styles = {
 };
 
 const AppDrawer = (props) => {
-  const {open, onDrawerClose} = props;
+  const {classes, open, onDrawerClose} = props;
 
   return (
     <div>
@@ -26,7 +29,10 @@ const AppDrawer = (props) => {
           onKeyDown={onDrawerClose}
         >
           <MenuItem onClick={onDrawerClose}>
-            Profile
+            <ListItemIcon className={classes.icon}>
+              <HomeIcon/>
+            </ListItemIcon>
+            <ListItemText classes={{primary: classes.primary}} inset primary="Home"/>
           </MenuItem>
           <MenuItem onClick={onDrawerClose}>
             My account
@@ -38,6 +44,7 @@ const AppDrawer = (props) => {
 };
 
 AppDrawer.propTypes = {
+  classes: PropTypes.instanceOf(PropTypes.object).isRequired,
   open: PropTypes.bool.isRequired,
   onDrawerClose: PropTypes.func.isRequired,
 };
