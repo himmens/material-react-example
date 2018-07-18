@@ -1,43 +1,45 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import MenuItem from "@material-ui/core/MenuItem";
+import MenuItem from '@material-ui/core/MenuItem';
 
 const styles = {
-    list: {
-        width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
+  list: {
+    width: 250,
+  },
+  fullList: {
+    width: 'auto',
+  },
 };
 
-class AppDrawer extends React.Component {
-    render() {
-        const {classes} = this.props;
+const AppDrawer = (props) => {
+  const {open, onDrawerClose} = props;
 
-        return (
-            <div>
-                <Drawer open={this.props.open} onClose={this.props.onDrawerClose}>
-                    <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.props.onDrawerClose}
-                        onKeyDown={this.props.onDrawerClose}
-                    >
-                        <MenuItem onClick={this.props.onDrawerClose}>Profile</MenuItem>
-                        <MenuItem onClick={this.props.onDrawerClose}>My account</MenuItem>
-                    </div>
-                </Drawer>
-            </div>
-        );
-    }
-}
+  return (
+    <div>
+      <Drawer open={open} onClose={onDrawerClose}>
+        <div
+          tabIndex={0}
+          role="button"
+          onClick={onDrawerClose}
+          onKeyDown={onDrawerClose}
+        >
+          <MenuItem onClick={onDrawerClose}>
+            Profile
+          </MenuItem>
+          <MenuItem onClick={onDrawerClose}>
+            My account
+          </MenuItem>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
 
 AppDrawer.propTypes = {
-    classes: PropTypes.object.isRequired,
-    onDrawerClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
+  onDrawerClose: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AppDrawer);

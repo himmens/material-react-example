@@ -1,22 +1,29 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AppHeader from './components/header';
 import AppDrawer from './components/drawer';
 
-export default class App extends Component {
-    state = {
-        isDrawerOpen: false,
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDrawerOpen: false,
     };
+    this.toggleDrawer = this.toggleDrawer.bind(this);
+  }
 
-    toggleDrawer = () => {
-        this.setState({isDrawerOpen: !this.state.isDrawerOpen});
-    };
+  toggleDrawer() {
+    const {isDrawerOpen} = this.state;
+    this.setState({isDrawerOpen: !isDrawerOpen});
+  }
 
-    render() {
-        return (
-            <div>
-                <AppHeader onIconClick={this.toggleDrawer}/>
-                <AppDrawer open={this.state.isDrawerOpen} onDrawerClose={this.toggleDrawer}/>
-            </div>
-        );
-    }
+  render() {
+    const {isDrawerOpen} = this.state;
+
+    return (
+      <div>
+        <AppHeader onIconClick={this.toggleDrawer}/>
+        <AppDrawer open={isDrawerOpen} onDrawerClose={this.toggleDrawer}/>
+      </div>
+    );
+  }
 }

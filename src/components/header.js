@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {withStyles} from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -11,85 +11,95 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 const styles = {
-    root: {
-        flexGrow: 1,
-    },
-    flex: {
-        flexGrow: 1,
-    },
-    appBar: {
-        backgroundColor: '#5d9aff',
-    },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
+  root: {
+    flexGrow: 1,
+  },
+  flex: {
+    flexGrow: 1,
+  },
+  appBar: {
+    backgroundColor: '#5d9aff',
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
 };
 
 class AppHeader extends React.Component {
-    state = {
-        anchorEl: null,
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null,
     };
+    this.handleMenu = this.handleMenu.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
-    handleMenu = event => {
-        this.setState({anchorEl: event.currentTarget});
-    };
+  handleMenu(event) {
+    this.setState({anchorEl: event.currentTarget});
+  }
 
-    handleClose = () => {
-        this.setState({anchorEl: null});
-    };
+  handleClose() {
+    this.setState({anchorEl: null});
+  }
 
-    render() {
-        const {classes} = this.props;
-        const {anchorEl} = this.state;
-        const open = Boolean(anchorEl);
+  render() {
+    const {classes, onIconClick} = this.props;
+    const {anchorEl} = this.state;
+    const open = Boolean(anchorEl);
 
-        return (
-            <div className={classes.root}>
-                <AppBar className={classes.appBar}>
-                    <Toolbar>
-                        <IconButton className={classes.menuButton} color="inherit" onClick={this.props.onIconClick}>
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="title" color="inherit" className={classes.flex}>
-                            News
-                        </Typography>
-                        <div>
-                            <IconButton
-                                aria-owns={open ? 'menu-appbar' : null}
-                                aria-haspopup="true"
-                                onClick={this.handleMenu}
-                                color="inherit"
-                            >
-                                <AccountCircle/>
-                            </IconButton>
-                            <Menu
-                                id="menu-appbar"
-                                anchorEl={anchorEl}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={open}
-                                onClose={this.handleClose}
-                            >
-                                <MenuItem onClick={this.handleClose}>Profile</MenuItem>
-                                <MenuItem onClick={this.handleClose}>My account</MenuItem>
-                            </Menu>
-                        </div>
-                    </Toolbar>
-                </AppBar>
+    return (
+      <div className={classes.root}>
+        <AppBar className={classes.appBar}>
+          <Toolbar>
+            <IconButton className={classes.menuButton} color="inherit" onClick={onIconClick}>
+              <MenuIcon/>
+            </IconButton>
+            <Typography variant="title" color="inherit" className={classes.flex}>
+              News
+            </Typography>
+            <div>
+              <IconButton
+                aria-owns={open ? 'menu-appbar' : null}
+                aria-haspopup="true"
+                onClick={this.handleMenu}
+                color="inherit"
+              >
+                <AccountCircle/>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={this.handleClose}
+              >
+                <MenuItem onClick={this.handleClose}>
+                  Profile
+                </MenuItem>
+                <MenuItem onClick={this.handleClose}>
+                  My account
+                </MenuItem>
+              </Menu>
             </div>
-        );
-    }
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
 
 AppHeader.propTypes = {
-    classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  onIconClick: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AppHeader);
