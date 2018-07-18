@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "rules": {
+    "react/jsx-filename-extension": [1, {"extensions": [".js", ".jsx"]}],
+    "react/jsx-tag-spacing": ["error", {"beforeSelfClosing": "never"}],
+    "eol-last": 0,
+    "object-curly-spacing": [0, "never"]
+  },
+  "globals": {
+    "window": true,
+    "document": true
+  }
+}
