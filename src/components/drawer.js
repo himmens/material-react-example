@@ -54,7 +54,7 @@ const AppDrawer = (props) => {
 };
 
 AppDrawer.propTypes = {
-  classes: PropTypes.instanceOf(PropTypes.object).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   open: PropTypes.bool.isRequired,
   onDrawerClose: PropTypes.func.isRequired,
 };

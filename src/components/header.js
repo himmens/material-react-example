@@ -34,6 +34,7 @@ class AppHeader extends React.Component {
     };
     this.handleMenu = this.handleMenu.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleSignOut = this.handleSignOut.bind(this);
   }
 
   handleMenu(event) {
@@ -42,6 +43,12 @@ class AppHeader extends React.Component {
 
   handleClose() {
     this.setState({anchorEl: null});
+  }
+
+  handleSignOut() {
+    this.handleClose();
+    const {onSignOut} = this.props;
+    onSignOut();
   }
 
   render() {
@@ -85,8 +92,8 @@ class AppHeader extends React.Component {
                 <MenuItem onClick={this.handleClose}>
                   Profile
                 </MenuItem>
-                <MenuItem onClick={this.handleClose}>
-                  My account
+                <MenuItem onClick={this.handleSignOut}>
+                  Sign Out
                 </MenuItem>
               </Menu>
             </div>
@@ -98,8 +105,9 @@ class AppHeader extends React.Component {
 }
 
 AppHeader.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.object).isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   onIconClick: PropTypes.func.isRequired,
+  onSignOut: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AppHeader);
